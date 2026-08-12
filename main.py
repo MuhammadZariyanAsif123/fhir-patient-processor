@@ -6,10 +6,14 @@ import os
 
 app = FastAPI(title="FHIR Patient Risk Analyzer")
 
-frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:3000")
+origins = [
+    "http://localhost:3000",
+    "https://fhir-patient-frontend.vercel.app"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url], 
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
