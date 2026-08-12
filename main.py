@@ -29,9 +29,9 @@ def calculate_risk(birth_date: str) -> str:
     except ValueError: return "Unknown"
 
 @app.get("/api/v1/patients/risk-assessment")
-def get_patient_risk():
+def get_patient_risk(count: int = 10):
     try:
-        response = requests.get(f"{FHIR_SERVER_URL}/Patient?_count=10", timeout=5)
+        response = requests.get(f"{FHIR_SERVER_URL}/Patient?_count={count}", timeout=5)
         response.raise_for_status()
         fhir_data = response.json()
         processed_patients = []
