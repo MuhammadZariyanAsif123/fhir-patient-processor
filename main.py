@@ -8,7 +8,7 @@ app = FastAPI(title="FHIR Patient Risk Analyzer")
 
 origins = [
     "http://localhost:3000",
-    "https://fhir-patient-frontend.vercel.app"
+    "https://fhir-patient-frontend.vercel.app" 
 ]
 
 app.add_middleware(
