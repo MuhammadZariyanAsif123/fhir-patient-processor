@@ -17,6 +17,8 @@ app.add_middleware(
 
 FHIR_SERVER_URL = "http://hapi.fhir.org/baseR4"
 
+
+
 def calculate_risk(birth_date: str) -> str:
     if not birth_date: return "Unknown"
     try:
@@ -27,6 +29,11 @@ def calculate_risk(birth_date: str) -> str:
         elif age > 40: return "Moderate"
         return "Low"
     except ValueError: return "Unknown"
+
+
+@app.get("/")
+def read_root():
+    return {"status": "online", "system": "Nexus Health OS API"}
 
 @app.get("/api/v1/patients/risk-assessment")
 def get_patient_risk(count: int = 10):
